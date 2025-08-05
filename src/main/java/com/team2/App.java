@@ -23,6 +23,7 @@ public class App {
 
             switch(rq.getActionName()) {
                 case "write" -> postController.actionWrite();
+                case "list" -> postController.actionList();
                 case "exit" -> {
                     System.out.println("프로그램을 종료합니다.");
                     return;

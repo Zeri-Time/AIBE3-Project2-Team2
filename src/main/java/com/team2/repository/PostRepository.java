@@ -1,7 +1,6 @@
 package com.team2.repository;
 
 import com.team2.domain.post.Post;
-import com.team2.standard.util.LocalDateTimeUtil;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,8 +13,11 @@ public class PostRepository {
 
     public void save(Post post) {
         post.setId(++lastId);
-        LocalDateTime now = LocalDateTime.now();
-        post.setRegDate(LocalDateTimeUtil.toString(now));
+        post.setRegDate(LocalDateTime.now());
         postList.add(post);
+    }
+
+    public List<Post> getPosts() {
+        return new ArrayList<>(postList);
     }
 }

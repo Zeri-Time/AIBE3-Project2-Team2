@@ -4,6 +4,8 @@ import com.team2.AppContext;
 import com.team2.domain.post.Post;
 import com.team2.repository.PostRepository;
 
+import java.util.List;
+
 public class PostService {
 
     private final PostRepository postRepository;
@@ -15,5 +17,11 @@ public class PostService {
     public void write(String title, String content) {
         Post post = new Post(title, content);
         postRepository.save(post);
+    }
+
+    public List<Post> list() {
+        List<Post> posts = postRepository.getPosts();
+        posts.sort((a, b) -> b.getRegDate().compareTo(a.getRegDate()));
+        return posts;
     }
 }

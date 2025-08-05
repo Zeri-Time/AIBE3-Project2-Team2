@@ -32,6 +32,9 @@ public class App {
                 case "write":
                     writePost();
                     break;
+                case "list":
+                    listPosts();
+                    break;
                 default:
                     System.out.println("명령어를 확인 해주세요");
                     break;
@@ -39,6 +42,7 @@ public class App {
         }
     }
 
+    // 게시물 작성 메서드
     public void writePost() {
         System.out.println("제목: ");
         String title = sc.nextLine();
@@ -54,8 +58,23 @@ public class App {
 
         System.out.println("%d번 게시글이 등록되었습니다.\n");
         // printf 메서드 참고
-            // %d: 여기에 정수형 변수의 값이 들어감
-                // 만약 정수형 변수가 두개 이상이면 차례대로 들어가니까 %d를 두번 이상 사용해도 됨
-            // \n: 줄바꿈. println 내부에서도 사용 가능하네
+        // %d: 여기에 정수형 변수의 값이 들어감
+        // 만약 정수형 변수가 두개 이상이면 차례대로 들어가니까 %d를 두번 이상 사용해도 됨
+        // \n: 줄바꿈. println 내부에서도 사용 가능하네
+    }
+
+    // 게시물 조회 메서드
+    public void listPosts() {
+        if (posts.isEmpty()) {
+            System.out.println("게시글이 없습니다.");
+            return;
+        }
+        System.out.println("--게시글 목록--");
+        System.out.println("번호 / 제목 / 내용 / 등록일");
+
+        for (int i = posts.size() - 1; i >= 0; i--) {
+            Post post = posts.get(i);
+            System.out.println(post.id + " / " +  post.title + " / " + post.content + " / " + post.regDate);
+        }
     }
 }

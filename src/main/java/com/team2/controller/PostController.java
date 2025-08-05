@@ -40,18 +40,41 @@ public class PostController {
     }
 
     public void actionDetail(int id) {
-        if (id == -1) {
-            System.out.println("번호를 다시 입력 해 주세요.");
-            return;
-        }
-        Post post = postService.detail(id);
-        if (post == null) {
-            System.out.printf("%d번 게시글은 존재하지 않습니다.\n", id);
-            return;
-        }
+        Post post = findPostOrPrintError(id);
+        if (post == null) return;
+
         System.out.println("번호: " + post.getId());
         System.out.println("제목: " + post.getTitle());
         System.out.println("내용: " + post.getContent());
         System.out.println("등록일: " + LocalDateTimeUtil.toString(post.getRegDate()));
+    }
+
+    public void actionUpdate(int id) {
+        Post post = findPostOrPrintError(id);
+        if (post == null) return;
+
+        System.out.printf("제목 (현재: %s): ", post.getTitle());
+        String title = scanner.nextLine();
+
+        System.out.printf("내용 (현재: %s): ", post.getContent());
+        String content = scanner.nextLine();
+
+        postService.update(id, title, content);
+        System.out.println("=> 게시글이 수정되었습니다.");
+    }
+
+    private Post findPostOrPrintError(int id) {
+        if (id == -1) {
+            System.out.println("번호를 다시 입력 해 주세요.");
+            return null;
+        }
+
+        Post post = postService.detail(id);
+        if (post == null) {
+            System.out.printf("%d번 게시글은 존재하지 않습니다.\n", id);
+            return null;
+        }
+
+        return post;
     }
 }

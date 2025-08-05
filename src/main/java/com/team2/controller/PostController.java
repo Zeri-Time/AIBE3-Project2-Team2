@@ -38,4 +38,20 @@ public class PostController {
             System.out.printf("%d  | %s      | %s\n", post.getId(), post.getTitle(), LocalDateTimeUtil.toString(post.getRegDate()));
         }
     }
+
+    public void actionDetail(int id) {
+        if (id == -1) {
+            System.out.println("번호를 다시 입력 해 주세요.");
+            return;
+        }
+        Post post = postService.detail(id);
+        if (post == null) {
+            System.out.printf("%d번 게시글은 존재하지 않습니다.\n", id);
+            return;
+        }
+        System.out.println("번호: " + post.getId());
+        System.out.println("제목: " + post.getTitle());
+        System.out.println("내용: " + post.getContent());
+        System.out.println("등록일: " + LocalDateTimeUtil.toString(post.getRegDate()));
+    }
 }

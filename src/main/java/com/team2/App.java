@@ -14,6 +14,7 @@ public class App {
 
             switch (cmd) {
                 case "등록" -> postController.actionWrite();
+                case "목록" -> postController.actionList();
                 case "종료" -> {
                     return;
                 }

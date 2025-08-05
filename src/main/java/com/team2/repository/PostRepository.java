@@ -39,4 +39,8 @@ public class PostRepository {
 
         return post;
     }
+
+    public List<Post> findForList() {
+        return new ArrayList<>(postList);
+    }
 }

@@ -38,4 +38,13 @@ public class PostService {
 
         postRepository.save(post);
     }
+
+    public boolean delete(int id) {
+        Post post = postRepository.findById(id);
+
+        if (post == null) return false;
+
+        postRepository.delete(post);
+        return true;
+    }
 }

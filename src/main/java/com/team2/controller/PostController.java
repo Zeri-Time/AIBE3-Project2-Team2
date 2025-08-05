@@ -84,4 +84,19 @@ public class PostController {
         postService.modify(post, title, content);
         System.out.printf("%d번 게시물이 수정되었습니다.\n", id);
     }
+
+    public void actionDelete(Rq rq) {
+        int id = rq.getParamAsInt("id", -1);
+
+        if (id == -1) {
+            System.out.println("id를 숫자로 입력해주세요.");
+            return;
+        }
+
+        boolean isDeleted = postService.delete(id);
+
+        if (isDeleted) {
+            System.out.printf("%d번 게시물이 삭제되었습니다.\n", id);
+        }
+    }
 }

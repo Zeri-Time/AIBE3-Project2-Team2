@@ -35,7 +35,7 @@ public class PostController {
         System.out.println("번호 | 제목       | 등록일");
         System.out.println("-----------------------------");
         for (Post post : posts) {
-            System.out.printf("%d  | %s      | %s\n", post.getId(), post.getContent(), LocalDateTimeUtil.toString(post.getRegDate()));
+            System.out.printf("%d  | %s      | %s\n", post.getId(), post.getTitle(), LocalDateTimeUtil.toString(post.getRegDate()));
         }
     }
 }

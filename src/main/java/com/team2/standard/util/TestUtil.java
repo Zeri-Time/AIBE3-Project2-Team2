@@ -1,4 +1,4 @@
-package com.team2.standart.util;
+package com.team2.standard.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

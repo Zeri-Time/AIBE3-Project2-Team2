@@ -1,4 +1,4 @@
-package com.team2.standart.util;
+package com.team2.standard.util;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

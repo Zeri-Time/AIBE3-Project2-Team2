@@ -15,18 +15,17 @@ public class Post {
     private int id;
     private String title;
     private String content;
-    private final LocalDateTime createdAt;
+    private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private final DateTimeFormatter formatter;
 
-    public Post(int id, String title, String content, LocalDateTime createdAt, LocalDateTime modifiedAt) {
-        this.id = id;
+    public Post(String title, String content) {
         this.title = title;
         this.content = content;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.formatter = AppContext.formatter;
     }
 
-
+    public boolean isNew() {
+        return id == 0;
+    }
 }

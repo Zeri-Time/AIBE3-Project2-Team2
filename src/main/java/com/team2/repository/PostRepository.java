@@ -27,4 +27,8 @@ public class PostRepository {
                 .findFirst()
                 .orElse(null);
     }
+
+    public void remove(Post post) {
+        postList.remove(post);
+    }
 }

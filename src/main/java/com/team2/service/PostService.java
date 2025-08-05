@@ -34,4 +34,8 @@ public class PostService {
         post.setTitle(title);
         post.setContent(content);
     }
+
+    public void delete(Post post) {
+        postRepository.remove(post);
+    }
 }

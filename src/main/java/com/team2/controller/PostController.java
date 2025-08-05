@@ -1,8 +1,11 @@
 package com.team2.controller;
 
 import com.team2.AppContext;
+import com.team2.domain.post.Post;
 import com.team2.service.PostService;
+import com.team2.standard.util.LocalDateTimeUtil;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class PostController {
@@ -25,5 +28,14 @@ public class PostController {
         postService.write(title, content);
 
         System.out.println("=> 게시글이 등록되었습니다.");
+    }
+
+    public void actionList() {
+        List<Post> posts = postService.list();
+        System.out.println("번호 | 제목       | 등록일");
+        System.out.println("-----------------------------");
+        for (Post post : posts) {
+            System.out.printf("%d  | %s      | %s\n", post.getId(), post.getContent(), LocalDateTimeUtil.toString(post.getRegDate()));
+        }
     }
 }

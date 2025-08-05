@@ -26,6 +26,7 @@ public class App {
                 case "list" -> postController.actionList();
                 case "detail" -> postController.actionDetail(rq.getParamAsInt("id", -1));
                 case "update" -> postController.actionUpdate(rq.getParamAsInt("id", -1));
+                case "delete" -> postController.actionDelete(rq.getParamAsInt("id", -1));
                 case "exit" -> {
                     System.out.println("프로그램을 종료합니다.");
                     return;

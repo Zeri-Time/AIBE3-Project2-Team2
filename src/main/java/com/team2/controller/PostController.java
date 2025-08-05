@@ -77,4 +77,12 @@ public class PostController {
 
         return post;
     }
+
+    public void actionDelete(int id) {
+        Post post = findPostOrPrintError(id);
+        if (post == null) return;
+
+        postService.delete(post);
+        System.out.println("=> 게시글이 삭제되었습니다.");
+    }
 }

@@ -28,4 +28,10 @@ public class PostService {
     public Post detail(int id) {
         return postRepository.findById(id);
     }
+
+    public void update(int id, String title, String content) {
+        Post post = postRepository.findById(id);
+        post.setTitle(title);
+        post.setContent(content);
+    }
 }

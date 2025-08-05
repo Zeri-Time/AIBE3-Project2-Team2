@@ -1,6 +1,7 @@
 package com.team2;
 
 import com.team2.controller.PostController;
+import com.team2.global.Rq;
 
 public class App {
     public void run() {
@@ -11,10 +12,12 @@ public class App {
         while (true) {
             System.out.print("명령) ");
             String cmd = AppContext.sc.nextLine().trim();
+            Rq rq = new Rq(cmd);
 
-            switch (cmd) {
+            switch (rq.getActionName()) {
                 case "등록" -> postController.actionWrite();
                 case "목록" -> postController.actionList();
+                case "상세" -> postController.actionDetail(rq);
                 case "종료" -> {
                     return;
                 }

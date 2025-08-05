@@ -37,4 +37,8 @@ public class PostRepository {
     public List<Post> findForList() {
         return new ArrayList<>(postList);
     }
+
+    public void delete(Post post) {
+        postList.remove(post);
+    }
 }

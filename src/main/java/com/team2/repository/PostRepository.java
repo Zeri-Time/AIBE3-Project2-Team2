@@ -35,7 +35,7 @@ public class PostRepository {
     }
 
     public List<Post> findForList() {
-        return new ArrayList<>(postList);
+        return new ArrayList<>(postList).reversed();
     }
 
     public void delete(Post post) {

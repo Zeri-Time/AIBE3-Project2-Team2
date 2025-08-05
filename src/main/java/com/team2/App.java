@@ -23,6 +23,10 @@ public class App {
 
             switch(rq.getActionName()) {
                 case "write" -> postController.actionWrite();
+                case "exit" -> {
+                    System.out.println("프로그램을 종료합니다.");
+                    return;
+                }
                 default -> System.out.println("명령어를 다시 입력 해 주세요.");
             }
         }

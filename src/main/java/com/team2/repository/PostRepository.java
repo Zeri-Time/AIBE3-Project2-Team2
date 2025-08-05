@@ -10,12 +10,12 @@ public class PostRepository {
     private final List<Post> postList = new ArrayList<>();
     int lastId = 0;
 
-    Post findById(int id) {
+    public Post findById(int id) {
         return postList.stream()
                 .filter(post -> post.getId() == id)
                 .findFirst()
                 .orElseGet(() -> {
-                    System.out.println("해당 아이디는 존재하지 않습니다.");
+                    System.out.printf("%d번 게시물은 존재하지 않습니다.\n", id);
                     return null;
                 });
     }

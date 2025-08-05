@@ -13,11 +13,21 @@ public class PostService {
         this.postRepository = AppContext.postRepository;
     }
     public Post write(String title, String content) {
-        Post post = this.postRepository.save(null, title, content);
+        Post post = postRepository.save(null, title, content);
         return post;
     }
 
     public List<Post> findForList() {
-        return this.postRepository.findForList();
+        return postRepository.findForList();
+    }
+
+    public Post findPostById(int id) {
+        Post post = postRepository.findById(id);
+
+        if (post == null) {
+            return null;
+        }
+
+        return post;
     }
 }

@@ -1,6 +1,6 @@
 package com.team2;
 
-import com.team2.standart.util.TestUtil;
+import com.team2.standard.util.TestUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Scanner;

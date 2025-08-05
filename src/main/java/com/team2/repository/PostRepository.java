@@ -20,4 +20,11 @@ public class PostRepository {
     public List<Post> getPosts() {
         return new ArrayList<>(postList);
     }
+
+    public Post findById(int id) {
+        return postList.stream()
+                .filter(post -> post.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
 }

@@ -24,4 +24,8 @@ public class PostService {
         posts.sort((a, b) -> b.getRegDate().compareTo(a.getRegDate()));
         return posts;
     }
+
+    public Post detail(int id) {
+        return postRepository.findById(id);
+    }
 }

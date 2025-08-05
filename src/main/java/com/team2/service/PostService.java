@@ -13,7 +13,8 @@ public class PostService {
         this.postRepository = AppContext.postRepository;
     }
     public Post write(String title, String content) {
-        Post post = postRepository.save(null, title, content);
+        Post post = new Post(title, content);
+        post = postRepository.save(post);
         return post;
     }
 
@@ -29,5 +30,12 @@ public class PostService {
         }
 
         return post;
+    }
+
+    public void modify(Post post, String title, String content) {
+        post.setTitle(title);
+        post.setContent(content);
+
+        postRepository.save(post);
     }
 }

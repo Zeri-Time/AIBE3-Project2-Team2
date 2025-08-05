@@ -20,20 +20,14 @@ public class PostRepository {
                 });
     }
 
-    public Post save(Integer id, String title, String content) {
+    public Post save(Post post) {
         LocalDateTime now = LocalDateTime.now();
-        Post post;
-
-        if (id == null) {
-            post = new Post(++lastId, title, content, now, now);
+        if(post.isNew()) { // 생성
+            post.setId(++lastId);
+            post.setCreatedAt(now);
+            post.setModifiedAt(now);
             postList.add(post);
-        } else {
-            post = findById(id);
-            if (post == null) {
-                return null;
-            }
-            post.setTitle(title);
-            post.setContent(content);
+        } else { // 수정
             post.setModifiedAt(now);
         }
 

@@ -59,4 +59,29 @@ public class PostController {
         System.out.printf("작성일: %s\n", post.getCreatedAt().format(post.getFormatter()));
         System.out.printf("수정일: %s\n", post.getModifiedAt().format(post.getFormatter()));
     }
+
+    public void actionModify(Rq rq) {
+        int id = rq.getParamAsInt("id", -1);
+
+        if (id == -1) {
+            System.out.println("id를 숫자로 입력해주세요.");
+            return;
+        }
+
+        Post post = postService.findPostById(id);
+
+        if (post == null) {
+            return;
+        }
+
+        System.out.println("제목 (기존): " + post.getTitle());
+        System.out.print("제목: ");
+        String title = sc.nextLine().trim();
+
+        System.out.println("내용 (기존): " + post.getContent());
+        System.out.print("내용: ");
+        String content = sc.nextLine().trim();
+        postService.modify(post, title, content);
+        System.out.printf("%d번 게시물이 수정되었습니다.\n", id);
+    }
 }

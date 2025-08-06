@@ -25,19 +25,18 @@ public class App {
             System.out.println("명령: ");
             String command = sc.nextLine().trim();
 
+            // case: 을 case -> 로 변경. break 필요 없이 해당 case가 실행되면 알아서 메서드 종료됨.
             switch (command) {
-                case "end":
+                case "end" ->
                     System.out.println("종료 합니다");
-                    return;
-                case "write":
+                case "write" ->
                     writePost();
-                    break;
-                case "list":
+                case "list" ->
                     listPosts();
-                    break;
-                default:
+                case "delete" ->
+                    deletePost();
+                default ->
                     System.out.println("명령어를 확인 해주세요");
-                    break;
             }
         }
     }
@@ -56,11 +55,12 @@ public class App {
         Post newPost = new Post(lastPostId, title, content, regDate);
         posts.add(newPost);
 
-        System.out.println("%d번 게시글이 등록되었습니다.\n");
-        // printf 메서드 참고
+        System.out.printf("%d번 게시글이 등록되었습니다.\n", lastPostId);
+        // printf 메서드 참고 -> println과 혼동x
         // %d: 여기에 정수형 변수의 값이 들어감
+        // **printf 사용 시 포맷 지정자(%d)에 대응하는 값을 반드시 제공해야함
         // 만약 정수형 변수가 두개 이상이면 차례대로 들어가니까 %d를 두번 이상 사용해도 됨
-        // \n: 줄바꿈. println 내부에서도 사용 가능하네
+        // \n: printf 에는 줄바꿈 원하는 곳에 수동으로 넣어주면 됨
     }
 
     // 게시물 조회 메서드
@@ -74,7 +74,28 @@ public class App {
 
         for (int i = posts.size() - 1; i >= 0; i--) {
             Post post = posts.get(i);
-            System.out.println(post.id + " / " +  post.title + " / " + post.content + " / " + post.regDate);
+//            System.out.println(post.id + " / " +  post.title + " / " + post.content + " / " + post.regDate);
+            System.out.printf("%d / %s / %s / %s\n", post.id, post.title, post.content, post.regDate);
+        }
+    }
+
+    public void deletePost() {
+        System.out.println("삭제할 게시물 번호: ");
+        int idDelete = sc.nextInt();
+        sc.nextLine();
+
+        Post foundPost = null;
+        for (Post post : posts) {
+            if (post.id == idDelete) {
+                foundPost = post;
+                break;
+            }
+        }
+        if (foundPost != null) {
+            posts.remove(foundPost);
+            System.out.printf("%d번 게시글 삭제.\n", idDelete);
+        } else {
+            System.out.printf("%d번 게시글을 찾을 수 없음.\n", idDelete);
         }
     }
 }

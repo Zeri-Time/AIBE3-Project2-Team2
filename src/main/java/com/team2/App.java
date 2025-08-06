@@ -14,6 +14,9 @@ public class App {
 
             switch (cmd) {
                 case "등록" -> postController.actionWrite();
+                case "종료" -> {
+                    return;
+                }
 
                 default -> System.out.println("다시 입력해주십시오.");
 

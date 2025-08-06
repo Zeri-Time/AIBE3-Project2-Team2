@@ -57,7 +57,17 @@ public class PostController {
         String updateTitle = scanner.nextLine();
         System.out.printf("내용 (현재: %s):", article.getContent());
         String updateContent = scanner.nextLine();
-        System.out.printf("%d번 게시글이 수정되었습니다%n.", article.getId());
+        System.out.printf("=> %d번 게시글이 수정되었습니다.%n", article.getId());
         postService.update(article, updateTitle, updateContent);
+    }
+
+    public void deleteArticle(int id) {
+        boolean isDeleted = postService.delete(id);
+
+        if(!isDeleted) {
+            System.out.printf("%d번 게시글은 존재하지 않습니다.%n", id);
+            return;
+        }
+        System.out.printf("=> %d번 게시글이 삭제되었습니다.%n", id);
     }
 }

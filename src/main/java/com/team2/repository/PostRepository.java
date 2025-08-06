@@ -20,6 +20,10 @@ public class PostRepository {
             articleList.add(article);
     }
 
+    public void delete(Article article) {
+        articleList.remove(article);
+    }
+
     public Optional<Article> findById(int id) {
         int idx = findIndexById(id);
 

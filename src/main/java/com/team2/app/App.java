@@ -1,24 +1,18 @@
 package com.team2.app;
 
 import com.team2.Rq;
-import com.team2.controller.PostController;
+import com.team2.context.AppContext;
 
 import java.util.Scanner;
 
-// 클래스 선언
 public class App {
     private final Scanner sc;
-    private final PostController postController;
-//    private final List<Post> posts;
-//    private int lastPostId;
+    private final AppContext appContext;
 
-
-    // 필드 초기화
     public App() {
         this.sc = new Scanner(System.in);
-        this.postController = new PostController();
-//        this.posts = new ArrayList<>();
-//        this.lastPostId = 0;
+        this.appContext = new AppContext();
+        this.appContext.init();
     }
 
     public void run() {
@@ -27,7 +21,7 @@ public class App {
             System.out.print("명령: ");
             String commandStr = sc.nextLine().trim();
 
-            if (commandStr.equals("end") || commandStr.equals("exit")) {
+            if (commandStr.equals("end")) {
                 System.out.println("종료합니다.");
                 break;
             }
@@ -35,11 +29,11 @@ public class App {
             Rq rq = new Rq(commandStr);
 
             switch (rq.getCommand()) {
-                case "write" -> postController.write();
-                case "list" -> postController.list();
-                case "detail" -> postController.detail(rq);
-                case "delete" -> postController.delete(rq);
-                case "update" -> postController.update(rq);
+                case "write" -> appContext.getPostController().write();
+                case "list" -> appContext.getPostController().list();
+                case "detail" -> appContext.getPostController().detail(rq);
+                case "delete" -> appContext.getPostController().delete(rq);
+                case "update" -> appContext.getPostController().update(rq);
                 default -> System.out.println("명령어를 확인해주세요.");
             }
         }

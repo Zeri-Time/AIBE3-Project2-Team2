@@ -2,42 +2,41 @@ package com.team2.controller;
 
 import com.team2.Rq;
 import com.team2.domain.post.Post;
+import com.team2.service.PostService;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class PostController {
     private final Scanner sc;
-    private final List<Post> posts;
-    private int lastPostId;
+    private final PostService postService;
 
-    public PostController() {
+    public PostController(PostService postService) {
         this.sc = new Scanner(System.in);
-        this.posts = new ArrayList<>();
-        this.lastPostId = 0;
+        this.postService = postService;
     }
 
-    // write, list, findPost는 그대로 사용
     public void write() {
         System.out.println("제목: ");
         String title = sc.nextLine();
         System.out.println("내용: ");
         String content = sc.nextLine();
-        lastPostId++;
         String regDate = LocalDate.now().toString();
 
-        Post newPost = new Post(lastPostId, title, content, regDate);
-        posts.add(newPost);
-        System.out.printf("%d번 게시글이 등록되었습니다.\n", lastPostId);
+        Post newPost = new Post(0, title, content, regDate);
+        postService.register(newPost);
+        System.out.printf("%d번 게시글이 등록되었습니다.\n", newPost.id);
     }
 
     public void list() {
+        List<Post> posts = postService.getPosts();
+
         if (posts.isEmpty()) {
             System.out.println("게시글이 없습니다.");
             return;
         }
+
         System.out.println("--게시글 목록--");
         System.out.println("번호 / 제목 / 등록일");
         for (int i = posts.size() - 1; i >= 0; i--) {
@@ -46,16 +45,6 @@ public class PostController {
         }
     }
 
-    private Post findPostById(int id) {
-        for (Post post : posts) {
-            if (post.id == id) {
-                return post;
-            }
-        }
-        return null;
-    }
-
-    // **변경 -> Rq 객체를 사용하는 메서드들
     public void detail(Rq rq) {
         int id = rq.getParamAsInt("id", -1);
 
@@ -64,7 +53,7 @@ public class PostController {
             return;
         }
 
-        Post foundPost = findPostById(id);
+        Post foundPost = postService.getPostById(id);
 
         if (foundPost != null) {
             System.out.println("--- 게시글 상세 ---");
@@ -85,14 +74,14 @@ public class PostController {
             return;
         }
 
-        Post foundPost = findPostById(id);
+        Post foundPost = postService.getPostById(id);
 
         if (foundPost == null) {
             System.out.printf("%d번 게시글은 존재하지 않습니다.\n", id);
             return;
         }
 
-        posts.remove(foundPost);
+        postService.deletePost(foundPost);
         System.out.printf("%d번 게시글이 삭제되었습니다.\n", id);
     }
 
@@ -104,7 +93,7 @@ public class PostController {
             return;
         }
 
-        Post foundPost = findPostById(id);
+        Post foundPost = postService.getPostById(id);
 
         if (foundPost == null) {
             System.out.printf("%d번 게시글은 존재하지 않습니다.\n", id);
@@ -124,6 +113,4 @@ public class PostController {
 
         System.out.printf("%d번 게시글이 수정되었습니다.\n", id);
     }
-
-
 }

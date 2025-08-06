@@ -18,8 +18,8 @@ public class PostService {
         return post;
     }
 
-    public List<Post> findForList() {
-        return postRepository.findForList();
+    public List<Post> findForList(String keywordType, String keyword) {
+        return postRepository.findForList(keywordType, keyword);
     }
 
     public Post findPostById(int id) {

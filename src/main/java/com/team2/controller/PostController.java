@@ -4,6 +4,7 @@ import com.team2.AppContext;
 import com.team2.entity.Article;
 import com.team2.service.PostService;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class PostController {
@@ -32,5 +33,16 @@ public class PostController {
         for(Article article : postService.findForList()) {
             System.out.printf("%d   | %s | %s%n", article.getId(), article.getTitle(), article.getCreateTime());
         }
+    }
+
+    public void showDetail(int id) {
+        Optional<Article> opArticle = postService.findById(id);
+        if(opArticle.isEmpty()) {
+            System.out.printf("%d번 게시글은 존재하지 않습니다.%n", id);
+            return;
+        }
+        Article article = opArticle.get();
+        System.out.printf("번호: %d%n제목: %s%n내용: %s%n등록일: %s%n",
+                article.getId(), article.getTitle(), article.getContent(), article.getCreateTime());
     }
 }

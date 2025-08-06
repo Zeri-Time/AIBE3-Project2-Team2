@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.IntStream;
 
 @Getter
 @Setter
@@ -17,5 +19,21 @@ public class PostRepository {
         article.setId(++lastId);
 
         articleList.add(article);
+    }
+
+    public Optional<Article> findById(int id) {
+        int idx = findIndexById(id);
+
+        if(idx == -1) return Optional.empty();
+
+        return Optional.of(articleList.get(idx));
+    }
+
+    public int findIndexById(int id) {
+        return IntStream
+                .range(0, articleList.size())
+                .filter(i -> articleList.get(i).getId() == id)
+                .findFirst()
+                .orElse(-1);
     }
 }

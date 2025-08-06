@@ -26,10 +26,13 @@ public class App {
             System.out.println("명령: ");
             String command = sc.nextLine().trim();
 
+            if (command.equals("exit")) {
+                System.out.println("종료 합니다");
+                break;
+            }
+
             // case: 을 case -> 로 변경. break 필요 없이 해당 case가 실행되면 알아서 메서드 종료됨.
             switch (command) {
-                case "end" ->
-                    System.out.println("종료 합니다");
                 case "write" ->
                     writePost();
                 case "list" ->
@@ -38,6 +41,8 @@ public class App {
                     deletePost();
                 case "detail" ->
                     detailPost();
+                case "update" ->
+                    updatePost();
                 default ->
                     System.out.println("명령어를 확인 해주세요");
             }
@@ -124,7 +129,40 @@ public class App {
             System.out.println("content: " + foundPost.content);
             System.out.println("regDate: " + foundPost.regDate);
         }else {
-            System.out.printf("%d번 게시글을 찾을 수 없음/n", idDetail);
+            System.out.printf("%d번 게시글을 찾을 수 없음\n", idDetail);
         }
+    }
+
+    // 게시물 수정 메서드
+    public void updatePost() {
+        System.out.println("수정할 게시물 번호: ");
+        int idUpdate = sc.nextInt();
+        sc.nextLine();
+
+        Post foundPost = null;
+        for (Post post : posts) {
+            if (post.id == idUpdate) {
+                foundPost = post;
+                break;
+            }
+        }
+
+        if (foundPost == null) {
+            System.out.printf("%d번 게시글을 찾을 수 없음\n", idUpdate);
+            return;
+        }
+
+        System.out.printf("기존 제목: %s\n", foundPost.title);
+        System.out.println("새 제목: ");
+        String newTitle = sc.nextLine();
+
+        System.out.printf("기존 내용: %s\n", foundPost.content);
+        System.out.println("새 내용: ");
+        String newContent = sc.nextLine();
+
+        foundPost.title = newTitle;
+        foundPost.content = newContent;
+
+        System.out.printf("%d번 게시글이 수정되었습니다.\n", idUpdate);
     }
 }

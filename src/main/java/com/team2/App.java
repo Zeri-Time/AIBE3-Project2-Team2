@@ -27,7 +27,7 @@ public class App {
                 case "list" -> postController.listArticles();
                 case "detail" -> postController.showDetail(rq.getParamsAsInt());
                 case "update" -> postController.updateArticle(rq.getParamsAsInt());
-                //case "delete" -> deleteArticle(rq.getParamsAsInt());
+                case "delete" -> postController.deleteArticle(rq.getParamsAsInt());
                 case "exit" -> {
                     systemController.actionExit();
                     return;

@@ -26,6 +26,18 @@ public class PostService {
         article.setContent(updateContent);
     }
 
+    public boolean delete(int id) {
+        Optional<Article> opArticle = postRepository.findById(id);
+
+        if (opArticle.isEmpty()) return false;
+
+        Article article = opArticle.get();
+
+        postRepository.delete(article);
+
+        return true;
+    }
+
     public List<Article> findForList() {
         return postRepository.getArticleList();
     }

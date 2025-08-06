@@ -26,4 +26,11 @@ public class PostController {
         System.out.printf("=> %s번 게시글이 등록되었습니다.%n", article.getId());
     }
 
+    public void listArticles() {
+        System.out.println("번호 | 제목      | 등록일");
+        System.out.println("-------------------------");
+        for(Article article : postService.findForList()) {
+            System.out.printf("%d   | %s | %s%n", article.getId(), article.getTitle(), article.getCreateTime());
+        }
+    }
 }

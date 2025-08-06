@@ -24,7 +24,7 @@ public class App {
 
             switch (rq.getActionName()) {
                 case "write" -> postController.writeArticle();
-                //case "list" -> listArticles();
+                case "list" -> postController.listArticles();
                 //case "detail" -> showDetail(rq.getParamsAsInt());
                 //case "update" -> updateArticle(rq.getParamsAsInt());
                 //case "delete" -> deleteArticle(rq.getParamsAsInt());

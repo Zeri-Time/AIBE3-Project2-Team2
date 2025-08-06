@@ -18,14 +18,20 @@ public class Post {
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private final DateTimeFormatter formatter;
+    private int count; // 조회수
 
     public Post(String title, String content) {
         this.title = title;
         this.content = content;
         this.formatter = AppContext.formatter;
+        this.count = 0;
     }
 
     public boolean isNew() {
         return id == 0;
+    }
+
+    public void increaseCount() {
+        this.count++;
     }
 }

@@ -53,9 +53,13 @@ public class PostController {
             return;
         }
 
+        post.increaseCount();
+
         System.out.printf("번호: %d\n", post.getId());
         System.out.printf("제목: %s\n", post.getTitle());
         System.out.printf("내용: %s\n", post.getContent());
+        System.out.printf("조회수: %d\n", post.getCount());
+        System.out.println("----------------------------");
         System.out.printf("작성일: %s\n", post.getCreatedAt().format(post.getFormatter()));
         System.out.printf("수정일: %s\n", post.getModifiedAt().format(post.getFormatter()));
     }

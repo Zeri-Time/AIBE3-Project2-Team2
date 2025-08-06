@@ -45,4 +45,19 @@ public class PostController {
         System.out.printf("번호: %d%n제목: %s%n내용: %s%n등록일: %s%n",
                 article.getId(), article.getTitle(), article.getContent(), article.getCreateTime());
     }
+
+    public void updateArticle(int id) {
+        Optional<Article> opArticle = postService.findById(id);
+        if(opArticle.isEmpty()) {
+            System.out.printf("%d번 게시글은 존재하지 않습니다.%n", id);
+            return;
+        }
+        Article article = opArticle.get();
+        System.out.printf("제목 (현재: %s):", article.getTitle());
+        String updateTitle = scanner.nextLine();
+        System.out.printf("내용 (현재: %s):", article.getContent());
+        String updateContent = scanner.nextLine();
+        System.out.printf("%d번 게시글이 수정되었습니다%n.", article.getId());
+        postService.update(article, updateTitle, updateContent);
+    }
 }

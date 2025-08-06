@@ -13,6 +13,7 @@ public class App {
     private final List<Post> posts;
     private int lastPostId;
 
+
     // 필드 초기화
     public App() {
         this.sc = new Scanner(System.in);
@@ -35,6 +36,8 @@ public class App {
                     listPosts();
                 case "delete" ->
                     deletePost();
+                case "detail" ->
+                    detailPost();
                 default ->
                     System.out.println("명령어를 확인 해주세요");
             }
@@ -79,6 +82,7 @@ public class App {
         }
     }
 
+    // 게시물 삭제 메서드
     public void deletePost() {
         System.out.println("삭제할 게시물 번호: ");
         int idDelete = sc.nextInt();
@@ -96,6 +100,31 @@ public class App {
             System.out.printf("%d번 게시글 삭제.\n", idDelete);
         } else {
             System.out.printf("%d번 게시글을 찾을 수 없음.\n", idDelete);
+        }
+    }
+
+    // 게시물 상세보기 메서드
+    public void detailPost() {
+        System.out.println("상세보기 할 게시물 번호: ");
+        int idDetail = sc.nextInt();
+        sc.nextLine();
+
+        Post foundPost = null;
+        for (Post post : posts) {
+            if (post.id == idDetail) {
+                foundPost = post;
+                break;
+            }
+        }
+
+        if (foundPost != null) {
+            System.out.println("--게시글 상세--");
+            System.out.println("id: " + foundPost.id);
+            System.out.println("title: " + foundPost.title);
+            System.out.println("content: " + foundPost.content);
+            System.out.println("regDate: " + foundPost.regDate);
+        }else {
+            System.out.printf("%d번 게시글을 찾을 수 없음/n", idDetail);
         }
     }
 }

@@ -34,7 +34,7 @@ public class PostRepository {
         return post;
     }
 
-    public List<Post> findForList(String keywordType, String keyword) {
+    public List<Post> findForList(String keywordType, String keyword, String sortBy) {
         List<Post> posts = new ArrayList<>(this.postList);
 
         switch (keywordType) {
@@ -43,9 +43,24 @@ public class PostRepository {
             case "" -> posts.removeIf(post ->
                     !post.getTitle().contains(keyword) &&
                     !post.getContent().contains(keyword));
+            default -> {
+                System.out.println("잘못된 검색 유형입니다.");
+                return null;
+            }
         }
 
-        return posts.reversed();
+        switch(sortBy) {
+            case "id" -> posts.sort((p1, p2) -> Integer.compare(p1.getId(), p2.getId())); // ID 오름차순
+            case "createdAt" -> posts.sort((p1, p2) -> p1.getCreatedAt().compareTo(p2.getCreatedAt())); // 작성일 오름차순
+            case "modifiedAt" -> posts.sort((p1, p2) -> p1.getModifiedAt().compareTo(p2.getModifiedAt())); // 수정일 오름차순
+            case "" -> posts.sort((p1, p2) -> Integer.compare(p2.getId(), p1.getId())); // 기본값: ID 내림차순
+            default -> {
+                System.out.println("잘못된 정렬 기준입니다.");
+                return null;
+            }
+        }
+
+        return posts;
     }
 
     public void delete(Post post) {

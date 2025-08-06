@@ -30,8 +30,11 @@ public class PostController {
     public void actionList(Rq rq) {
         String keywordType = rq.getParam("keywordType", "");
         String keyword = rq.getParam("keyword", "");
+        String sortBy = rq.getParam("sortBy", "");
 
-        List<Post> posts = postService.findForList(keywordType, keyword);
+        List<Post> posts = postService.findForList(keywordType, keyword, sortBy);
+
+        if (posts == null) return;
 
         System.out.println("번호 / 제목 / 내용 / 작성일 / 수정일");
         System.out.println("----------------------------");

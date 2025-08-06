@@ -21,6 +21,11 @@ public class PostService {
         return article;
     }
 
+    public void update (Article article, String updateTitle, String updateContent) {
+        article.setTitle(updateTitle);
+        article.setContent(updateContent);
+    }
+
     public List<Article> findForList() {
         return postRepository.getArticleList();
     }

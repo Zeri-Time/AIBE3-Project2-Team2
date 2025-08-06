@@ -16,9 +16,8 @@ public class PostRepository {
     private int lastId = 0;
 
     public void save(Article article) {
-        article.setId(++lastId);
-
-        articleList.add(article);
+            article.setId(++lastId);
+            articleList.add(article);
     }
 
     public Optional<Article> findById(int id) {

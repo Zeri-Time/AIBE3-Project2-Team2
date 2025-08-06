@@ -16,7 +16,7 @@ public class App {
 
             switch (rq.getActionName()) {
                 case "등록" -> postController.actionWrite();
-                case "목록" -> postController.actionList();
+                case "목록" -> postController.actionList(rq);
                 case "상세" -> postController.actionDetail(rq);
                 case "수정" -> postController.actionModify(rq);
                 case "삭제" -> postController.actionDelete(rq);

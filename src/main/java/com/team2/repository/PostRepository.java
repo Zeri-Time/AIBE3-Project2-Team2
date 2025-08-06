@@ -34,8 +34,18 @@ public class PostRepository {
         return post;
     }
 
-    public List<Post> findForList() {
-        return new ArrayList<>(postList).reversed();
+    public List<Post> findForList(String keywordType, String keyword) {
+        List<Post> posts = new ArrayList<>(this.postList);
+
+        switch (keywordType) {
+            case "title" -> posts.removeIf(post -> !post.getTitle().contains(keyword));
+            case "content" -> posts.removeIf(post -> !post.getContent().contains(keyword));
+            case "" -> posts.removeIf(post ->
+                    !post.getTitle().contains(keyword) &&
+                    !post.getContent().contains(keyword));
+        }
+
+        return posts.reversed();
     }
 
     public void delete(Post post) {

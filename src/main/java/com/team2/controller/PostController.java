@@ -5,6 +5,7 @@ import com.team2.domain.post.Post;
 import com.team2.global.Rq;
 import com.team2.service.PostService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class PostController {
@@ -26,11 +27,16 @@ public class PostController {
         System.out.println("%d번 게시물이 등록되었습니다.".formatted(post.getId()));
     }
 
-    public void actionList() {
+    public void actionList(Rq rq) {
+        String keywordType = rq.getParam("keywordType", "");
+        String keyword = rq.getParam("keyword", "");
+
+        List<Post> posts = postService.findForList(keywordType, keyword);
+
         System.out.println("번호 / 제목 / 내용 / 작성일 / 수정일");
         System.out.println("----------------------------");
 
-        for (Post post : postService.findForList()) {
+        for (Post post : posts) {
             System.out.printf("%d / %s / %s / %s\n",
                     post.getId(),
                     post.getTitle(),

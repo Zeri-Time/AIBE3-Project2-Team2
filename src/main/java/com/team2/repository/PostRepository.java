@@ -38,4 +38,13 @@ public class PostRepository {
             }
         }
     }
+
+    public static void delete(Post post) {
+        for (int i = 0; i <postList.size() ; i++) {
+            if(postList.get(i).getId() == post.getId()){
+                postList.remove(i);
+                return;
+            }
+        }
+    }
 }

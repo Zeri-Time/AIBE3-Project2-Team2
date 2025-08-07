@@ -1,8 +1,10 @@
 package com.team2.controller;
 
 import com.team2.domain.post.Post;
+import com.team2.repository.PostRepository;
 import com.team2.service.PostService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class PostController {
@@ -20,4 +22,13 @@ public class PostController {
     }
 
 
+    public static void actionList() {
+        List<Post> postList = PostService.getPostList();
+        System.out.println("번호 | 제목       | 등록일");
+        System.out.println("-----------------------------");
+        for(int i = 0; i < postList.size(); i ++) {
+            Post post = postList.get(i);
+            System.out.printf("%d   | %s | %s\n", post.getId(), post.getTitle(), post.getCreateDate());
+        }
+    }
 }

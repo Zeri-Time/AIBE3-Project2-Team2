@@ -25,6 +25,7 @@ public class App {
                 }
                 case "list" -> PostController.actionList();
                 case "detail" -> PostController.actionDetail(rq);
+                case "update" -> PostController.actionUpdate(rq);
             }
         }
     }

@@ -19,7 +19,7 @@ public class PostController {
         String content = scanner.nextLine();
 
         Post post = PostService.write(title, content);
-        System.out.println("게시글이 등록되었습니다.");
+        System.out.println("=> 게시글이 등록되었습니다.");
     }
 
 
@@ -41,5 +41,19 @@ public class PostController {
         System.out.println("제목: " + post.getTitle());
         System.out.println("내용: " + post.getContent());
         System.out.println("등록일: " + post.getCreateDate());
+    }
+
+    public static void actionUpdate(Rq rq) {
+        int id = rq.getParamAsInt();
+
+        Post post = PostService.findById(id);
+
+        System.out.print("제목 (현재: %s): ".formatted(post.getTitle()));
+        String newTitle = scanner.nextLine();
+        System.out.print("내용 (현재: %s): ".formatted(post.getTitle()));
+        String newContent = scanner.nextLine();
+
+        PostService.modify(post, newTitle, newContent);
+        System.out.println("=> 게시글이 수정되었습니다.");
     }
 }

@@ -23,4 +23,9 @@ public class PostService {
         return PostRepository.findById(id);
     }
 
+    public static void modify(Post post, String newTitle, String newContent) {
+        post.setTitle(newTitle);
+        post.setContent(newContent);
+        postRepository.update(post);
+    }
 }

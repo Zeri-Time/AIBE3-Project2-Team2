@@ -28,4 +28,14 @@ public class PostRepository {
 
         return null;
     }
+
+
+    public void update(Post post) {
+        for(int i = 0; i < postList.size(); i++) {
+            if(postList.get(i).getId() == post.getId()) {
+                postList.set(i, post);
+                return;
+            }
+        }
+    }
 }

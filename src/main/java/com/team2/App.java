@@ -2,6 +2,7 @@ package com.team2;
 
 import com.team2.controller.PostController;
 import com.team2.controller.SystemController;
+import com.team2.domain.post.Post;
 
 import java.util.Scanner;
 
@@ -26,6 +27,7 @@ public class App {
                 case "list" -> PostController.actionList();
                 case "detail" -> PostController.actionDetail(rq);
                 case "update" -> PostController.actionUpdate(rq);
+                case "delete" -> PostController.actionDelete(rq);
             }
         }
     }

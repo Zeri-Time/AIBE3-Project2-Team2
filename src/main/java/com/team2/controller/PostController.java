@@ -56,4 +56,17 @@ public class PostController {
         PostService.modify(post, newTitle, newContent);
         System.out.println("=> 게시글이 수정되었습니다.");
     }
+
+    public static void actionDelete(Rq rq) {
+        int id = rq.getParamAsInt();
+
+        Post post = PostService.findById(id);
+
+        if(post != null) {
+            PostRepository.delete(post);
+            System.out.println("=> 게시글이 삭제되었습니다.");
+        } else {
+            System.out.println("=> %d번 게시글이 존재하지 않습니다.".formatted(id));
+        }
+    }
 }

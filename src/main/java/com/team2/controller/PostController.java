@@ -18,4 +18,6 @@ public class PostController {
         Post post = PostService.write(title, content);
         System.out.println("게시글이 등록되었습니다.");
     }
+
+
 }

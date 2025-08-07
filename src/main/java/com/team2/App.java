@@ -1,6 +1,7 @@
 package com.team2;
 
 import com.team2.controller.PostController;
+import com.team2.controller.SystemController;
 
 import java.util.Scanner;
 
@@ -17,6 +18,10 @@ public class App {
 
             switch (cmd) {
                 case "write" -> PostController.actionWrite();
+                case "exit" -> {
+                    SystemController.actionExit();
+                    return;
+                }
             }
         }
     }

@@ -59,6 +59,7 @@ public class PostController {
         Post post = postService.findPostById(id);
 
         if (post == null) {
+            System.out.println("%d번 게시물은 존재하지 않습니다.".formatted(id));
             return;
         }
 
@@ -84,6 +85,7 @@ public class PostController {
         Post post = postService.findPostById(id);
 
         if (post == null) {
+            System.out.println("%d번 게시물은 존재하지 않습니다.".formatted(id));
             return;
         }
 

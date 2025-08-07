@@ -19,6 +19,8 @@ public class PostService {
         return postList;
     }
 
-
+    public static Post findById(int id) {
+        return PostRepository.findById(id);
+    }
 
 }

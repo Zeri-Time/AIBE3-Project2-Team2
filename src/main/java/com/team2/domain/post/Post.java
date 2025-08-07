@@ -1,9 +1,20 @@
 package com.team2.domain.post;
 
+import java.time.LocalDateTime;
+
 public class Post {
     private String title;
     private String content;
     private int id;
+    private LocalDateTime createDate;
+
+    public LocalDateTime getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDateTime createDate) {
+        this.createDate = createDate;
+    }
 
     public Post(String title, String content) {
         this. title = title;

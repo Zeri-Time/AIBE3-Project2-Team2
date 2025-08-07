@@ -22,6 +22,7 @@ public class App {
                     SystemController.actionExit();
                     return;
                 }
+                case "list" -> PostController.actionList();
             }
         }
     }

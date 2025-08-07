@@ -14,15 +14,17 @@ public class App {
         while(true) {
             System.out.print("명령어: ");
             Scanner sc = new Scanner(System.in);
-            String cmd = sc.nextLine();
+            String cmd = sc.nextLine().trim();
 
-            switch (cmd) {
+            Rq rq = new Rq(cmd);
+            switch (rq.getActionName()) {
                 case "write" -> PostController.actionWrite();
                 case "exit" -> {
                     SystemController.actionExit();
                     return;
                 }
                 case "list" -> PostController.actionList();
+                case "detail" -> PostController.actionDetail(rq);
             }
         }
     }

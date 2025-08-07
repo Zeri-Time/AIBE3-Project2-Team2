@@ -1,5 +1,6 @@
 package com.team2.controller;
 
+import com.team2.Rq;
 import com.team2.domain.post.Post;
 import com.team2.repository.PostRepository;
 import com.team2.service.PostService;
@@ -30,5 +31,15 @@ public class PostController {
             Post post = postList.get(i);
             System.out.printf("%d   | %s | %s\n", post.getId(), post.getTitle(), post.getCreateDate());
         }
+    }
+
+    public static void actionDetail(Rq rq) {
+        int id = rq.getParamAsInt();
+
+        Post post = PostService.findById(id);
+        System.out.println("번호: " + post.getId());
+        System.out.println("제목: " + post.getTitle());
+        System.out.println("내용: " + post.getContent());
+        System.out.println("등록일: " + post.getCreateDate());
     }
 }

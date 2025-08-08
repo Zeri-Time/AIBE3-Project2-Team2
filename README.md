@@ -88,14 +88,46 @@ src/main/java/com/team2/
 
 ---
 
-## 🧱 아키텍처 개요
+## 🗄️ 아키텍처
+이 프로젝트는 계층형 아키텍처(Layered Architecture)를 따릅니다:
 
-이 프로젝트는 **계층형 아키텍처 (Layered Architecture)** 를 기반으로 구성되어 있습니다.
+1. Controller Layer (PostController)
+사용자 입력 처리
+요청 파싱 및 검증
+서비스 계층 호출
+응답 포맷팅
+2. Service Layer (PostService)
+비즈니스 로직 처리
+데이터 검증
+트랜잭션 관리
+3. Repository Layer (PostRepository)
+데이터 접근 및 조작
+메모리 기반 데이터 저장
+CRUD 작업 수행
+4. Domain Layer (Post)
+엔티티 정의
+도메인 로직 캡슐화
 
-1. **Controller Layer**: 사용자 요청 처리 및 파라미터 파싱  
-2. **Service Layer**: 비즈니스 로직 처리 및 데이터 검증  
-3. **Repository Layer**: 메모리 기반 데이터 저장 및 조회  
-4. **Domain Layer**: 게시글 도메인 객체 정의  
+
+## 🔧 주요 클래스 설명
+```
+App.java
+애플리케이션의 메인 루프 관리
+사용자 명령어 파싱 및 라우팅
+프로그램 종료 처리
+AppContext.java
+전역 의존성 관리
+싱글톤 패턴으로 공유 객체 관리
+Scanner, DateTimeFormatter 등 공통 리소스 제공
+Rq.java
+사용자 입력 명령어 파싱
+쿼리 파라미터 추출 및 타입 변환
+URL 스타일의 파라미터 처리 (?key=value&key2=value2)
+Post.java
+게시글 엔티티
+Lombok 어노테이션으로 보일러플레이트 코드 제거
+조회수 관리 기능
+```
 
 ---
 
